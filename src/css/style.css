@@ -3,7 +3,7 @@
 html,
 body {
   font-family: 'Roboto';
-  font-size: 12px;
+  font-size: 20px;
   height: 100%;
   min-height: 640px;
   -webkit-text-size-adjust: none;
@@ -75,8 +75,20 @@ textarea {
   vertical-align: middle;
   white-space: normal;
   background: none;
+  font-size: 20px;
 }
 
 input:focus {
   outline: none;
+}
+
+.round-input {
+  border: 1px solid #666666;
+  /* background-color: #4c4c4c; */
+  background-color: white;
+  /* color: #c3c2be; */
+  color: black;
+  border-radius: 0.36rem;
+  padding: 0.4rem;
+  font-size: 0.9rem;
 }
