@@ -1,13 +1,28 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+
   padding: 10rem;
 }
 
 .leftWrapper {
-  flex: 1;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
 }
 
 .rightWrapper {
-  flex: 6;
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightHeaderWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.rightHeaderHeadLabel {
+  flex: 4;
+  border: 1px solid blue;
 }
