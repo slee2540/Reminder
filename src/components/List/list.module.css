@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.label {
+  flex: 4;
+  border: 1px solid blue;
+}
+
+.modify {
+  flex: 1;
+  border: 1px solid red;
+}
+
+.delete {
+  flex: 1;
+  border: 1px solid red;
+}
