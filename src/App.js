@@ -1,8 +1,7 @@
 import React from 'react';
 import SearchBox from 'components/SearchBox';
 import List from 'components/List';
-// import AddButton from 'components/AddButton';
-// import Task from 'components/Task';
+import Task from 'components/Task';
 import css from './app.module.css';
 
 function App() {
@@ -12,7 +11,9 @@ function App() {
         <SearchBox />
         <List />
       </div>
-      <div className={css.rightWrapper}>Right</div>
+      <div className={css.rightWrapper}>
+        <Task />
+      </div>
     </div>
   );
 }
