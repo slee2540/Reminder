@@ -17,10 +17,8 @@ const list = (state = initState, action) =>
       }
 
       case type.ADD_TASK: {
-        const {task, id} = action.payload;
-        if (id === '') break;
-        console.log(task, id);
-        // draft.task = task[id];
+        const {task} = action.payload;
+        draft.task = task;
         break;
       }
 

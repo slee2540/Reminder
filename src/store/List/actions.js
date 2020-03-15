@@ -7,11 +7,10 @@ export const addList = newList => ({
   },
 });
 
-export const addTask = (task, id) => ({
+export const addTask = task => ({
   type: type.ADD_TASK,
   payload: {
     task,
-    id,
   },
 });
 
