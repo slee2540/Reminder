@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.selectedBg {
+  background-color: steelblue;
+}
+
+.label {
+  flex: 3;
+  margin-left: 1rem;
+  font-size: 11px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid blue; */
+}
+
+.delete {
+  flex: 1;
+  /* border: 1px solid red; */
+}
+
+.headWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.headLabel {
+  flex: 4;
+  color: skyblue;
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  /* border: 1px solid blue; */
+}
+
+.headButton {
+  flex: 2;
+  /* border: 1px solid red; */
+}
+
+.approveCheck {
+  flex: 1;
+  content: '';
+  /* display: inline-block; */
+  width: 1rem;
+  height: 1rem;
+  line-height: 0.9rem;
+  margin: 3px 8px 0 0;
+  background: #fafafa;
+  /* text-align: left; */
+  /* vertical-align: middle; */
+  /* border: 1px solid #cacece; */
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+}
+
+.approveChecked:before {
+  content: '\2714';
+  color: #314ca2;
+  text-shadow: 1px 1px white;
+  background: #f1f4ff;
+  border-color: #adb8c0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+}
+
+.hiddenCheck {
+  display: none;
+}
