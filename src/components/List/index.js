@@ -1,33 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import cx from 'classnames';
 import dayjs from 'dayjs';
-import {addList, selectedList} from 'store/List/actions';
+import shortid from 'shortid';
+import {addList, addTask, selectedList} from 'store/List/actions';
 import css from './list.module.css';
 
 const List = () => {
-  const [list, setList] = useState([]);
-  const [num, setNum] = useState('0');
-  const [text, setText] = useState('');
-  const [newText, setNewText] = useState('');
   const [toggle, setToggle] = useState(false);
+  const [value, setValue] = useState({
+    num: '0',
+    text: '',
+    newText: '',
+  });
 
   const dispatch = useDispatch();
-  const propsList = useSelector(state => state.list);
+  const list = useSelector(state => state.list.list);
+  const propsTask = useSelector(state => state.list.task);
+  const selected = useSelector(state => state.list.selectedList);
 
-  useEffect(() => {
-    setList(propsList.list);
-  }, [propsList]);
+  useEffect(() => {}, [list, propsTask, selected]);
 
   const onRemove = id => () => {
     const newList = list.filter(item => item.id !== id);
-    setList(newList);
+    const newTask = propsTask.filter(item => item.list !== id);
     dispatch(addList(newList));
+    dispatch(addTask(newTask));
   };
 
-  const onModify = id => () => {
-    setNum(id);
-    dispatch(selectedList(num));
-    setText(list[id].name);
+  const onModify = index => () => {
+    // dispatch(addTask(propsTask));
+    dispatch(selectedList(index));
+    console.log(list[index].name, list[index].id);
+    setValue({...value, num: list[index].id, newText: '', text: list[index].name});
   };
 
   const handleKeyPress = (type, id) => e => {
@@ -36,15 +41,15 @@ const List = () => {
 
       if (type === 'new') {
         tempList = [
-          ...propsList.list,
-          {id: propsList.list.length, name: newText, created_at: dayjs(new Date()).format('YYYY-MM-DD HH:mm')},
+          ...list,
+          {id: shortid.generate(), name: value.newText, created_at: dayjs(new Date()).format('YYYY-MM-DD HH:mm')},
         ];
       }
 
       if (type === 'update') {
         tempList = list.map(item => {
           if (item.id === id) {
-            return {...item, name: text};
+            return {...item, name: value.text};
           }
           return item;
         });
@@ -52,18 +57,17 @@ const List = () => {
 
       dispatch(addList(tempList));
       setToggle(false);
-      setNewText('');
-      setNum('');
+      setValue({num: '', newText: ''});
     }
   };
 
   const onTextChange = type => e => {
-    if (type === 'new') setNewText(e.target.value);
-    if (type === 'update') setText(e.target.value);
+    if (type === 'new') setValue({...value, newText: e.target.value});
+    if (type === 'update') setValue({...value, text: e.target.value});
   };
 
   const getRandomColor = () => {
-    const colors = ['red', 'yellow', 'blue', 'green', 'purple', 'pink'];
+    const colors = ['red', 'blue', 'green', 'purple', 'pink'];
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
@@ -74,21 +78,20 @@ const List = () => {
   return (
     <>
       {list.length > 0
-        ? list.map(item => {
+        ? list.map((item, index) => {
             return (
-              <div key={`${item.name}${item.id}`} className={css.wrapper}>
-                {/* <div className={css.label}>{item.name}</div> */}
+              <div key={`${item.id}`} className={cx(css.wrapper, item.id === value.num ? css.selectedBg : '')}>
                 <input
                   type="text"
                   className="round-input"
-                  style={{color: item.id !== num ? getRandomColor() : null}}
-                  value={item.id !== num ? item.name : text}
-                  disabled={item.id !== num}
-                  onChange={item.id === num ? onTextChange('update') : null}
-                  onKeyPress={item.id === num ? handleKeyPress('update', item.id) : null}
+                  style={{color: item.id !== value.num ? getRandomColor() : null}}
+                  value={item.id !== value.num ? item.name : value.text}
+                  disabled={item.id !== value.num}
+                  onChange={item.id === value.num ? onTextChange('update') : null}
+                  onKeyPress={item.id === value.num ? handleKeyPress('update', item.id) : null}
                 />
-                <button type="button" className={css.modify} onClick={onModify(item.id)}>
-                  수정/선택
+                <button type="button" className={css.modify} onClick={onModify(index)}>
+                  수정
                 </button>
                 <button type="button" className={css.delete} onClick={onRemove(item.id)}>
                   삭제
@@ -102,15 +105,16 @@ const List = () => {
         <input
           type="text"
           className="round-input"
-          value={newText}
+          value={value.newText}
           onChange={onTextChange('new')}
           onKeyPress={handleKeyPress('new')}
         />
       ) : null}
-
-      <button type="button" className={css.headButton} onClick={add}>
-        + List 추가
-      </button>
+      <div className={css.buttonWrapper}>
+        <button type="button" className={css.button} onClick={add}>
+          + List 추가
+        </button>
+      </div>
     </>
   );
 };
