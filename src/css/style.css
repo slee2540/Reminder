@@ -12,8 +12,8 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-  background-color: #e4e5ec;
+  overflow: hidden;
+  /* background-color: #e4e5ec; */
   color: #0a0a09;
 }
 
