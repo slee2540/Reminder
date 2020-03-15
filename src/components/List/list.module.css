@@ -3,17 +3,29 @@
   flex-direction: row;
 }
 
+.selectedBg {
+  background-color: slategray;
+}
+
 .label {
   flex: 4;
-  border: 1px solid blue;
 }
 
 .modify {
   flex: 1;
-  border: 1px solid red;
 }
 
 .delete {
   flex: 1;
-  border: 1px solid red;
+}
+
+.buttonWrapper {
+  position: relative;
+}
+
+.button {
+  position: fixed;
+  text-align: left;
+  margin-left: 1rem;
+  top: 28rem;
 }
