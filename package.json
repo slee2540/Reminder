@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "classnames": "^2.2.6",
     "dayjs": "^1.8.22",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.0",
@@ -15,7 +16,8 @@
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "shortid": "^2.2.15"
   },
   "scripts": {
     "start": "react-scripts start",
