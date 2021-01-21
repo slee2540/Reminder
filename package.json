@@ -10,7 +10,7 @@
     "dayjs": "^1.8.22",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.0",
-    "immer": "^6.0.1",
+    "immer": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
